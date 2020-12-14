@@ -16,8 +16,9 @@ struct CharacterItemView<Destination>: View where Destination: View {
     var body: some View {
         NavigationLink(destination: destination) {
             VStack {
-                HStack {
+                VStack {
                     RemoteImage(imageLoader: ImageLoader(url: self.character.url))
+                    .frame(width: 100, height: 100)
                     Text(self.character.name)
                 }.padding(.horizontal, 20)
             }

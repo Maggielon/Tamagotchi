@@ -1,8 +1,8 @@
 //
 //  HostingController.swift
-//  Watch WatchKit Extension
+//  TamagotchiWatch WatchKit Extension
 //
-//  Created by Анастасия on 11.12.2020.
+//  Created by Анастасия on 14.12.2020.
 //  Copyright © 2020 Анастасия. All rights reserved.
 //
 

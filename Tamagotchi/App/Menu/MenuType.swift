@@ -9,12 +9,13 @@
 import Foundation
 
 enum MenuType {
-    case start, character
+    case start, character, info
     
     var title: String {
         switch self {
         case .start: return "Start game"
         case .character: return "Select character"
+        case .info: return "Info"
         }
     }
 }

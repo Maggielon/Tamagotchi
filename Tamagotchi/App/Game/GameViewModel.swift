@@ -43,6 +43,9 @@ class GameViewModel: ObservableObject {
             self.eatPercent = 0
         } else {
             self.eatPercent -= (100.0 * offset / self.maxTimeEat)
+            if self.eatPercent < 0 {
+                self.eatPercent = 0
+            }
         }
         UserDefaultsManager.shared[.eatPercent] = self.eatPercent
         UserDefaultsManager.shared[.eatTime] = Date().timeIntervalSince1970
@@ -61,6 +64,9 @@ class GameViewModel: ObservableObject {
             self.sleepPercent = 0
         } else {
             self.sleepPercent -= 100.0 / self.maxTimeSleep * offset
+            if self.sleepPercent < 0 {
+                self.sleepPercent = 0
+            }
         }
         UserDefaultsManager.shared[.sleepPercent] = self.sleepPercent
         UserDefaultsManager.shared[.sleepTime] = Date().timeIntervalSince1970

@@ -14,15 +14,13 @@ struct GameView: View {
     @ObservedObject var viewModel = GameViewModel()
     
     var body: some View {
-        VStack {
-            HStack(spacing: 50) {
-                Text("Status")
-                    .font(.title)
+        List {
+            Section(header: Text("Status")) {
                 VStack {
                     Text("Sleep")
                     Text("\(Int(self.viewModel.sleepPercent))%")
                         .font(.headline)
-                    .onReceive(self.viewModel.timer) { _ in
+                        .onReceive(self.viewModel.timer) { _ in
                             self.viewModel.getSleepPercent()
                             
                     }
@@ -30,7 +28,7 @@ struct GameView: View {
                 VStack {
                     Text("Eat")
                     Text("\(Int(self.viewModel.eatPercent))%")
-                    .font(.headline)
+                        .font(.headline)
                         .onReceive(self.viewModel.timer) { _ in
                             self.viewModel.getEatPercent()
                             
@@ -41,8 +39,10 @@ struct GameView: View {
                     Text("\(self.viewModel.foods.count)")
                 }
             }
-            RemoteImage(imageLoader: ImageLoader(url: character.url))
-            HStack {
+            Section {
+                RemoteImage(imageLoader: ImageLoader(url: character.url))
+            }
+            Section(header: Text("Actions")) {
                 Button(action: {
                     self.viewModel.eat()
                 }) {
@@ -55,12 +55,11 @@ struct GameView: View {
                     Text("Sleep")
                         .foregroundColor(.blue)
                 })
-            }
-            Spacer()
-            NavigationLink(destination: ShopView()) {
-                Text("Go to shop")
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                NavigationLink(destination: ShopView()) {
+                    Text("Go to shop")
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                }
             }
         }.onAppear {
             Character.selectedCharacter = self.character
